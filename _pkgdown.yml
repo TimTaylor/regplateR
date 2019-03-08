@@ -1,0 +1,14 @@
+reference:
+- title: Validation
+  desc: ~
+  contents:
+  - '`current_reg`'
+  - '`prefix_reg`'
+  - '`suffix_reg`'
+  - '`dateless_reg`'
+  - '`reg_date`'
+  - '`valid_reg`'
+- title: Ageing
+  desc: ~
+  contents:
+  - '`reg_date`'

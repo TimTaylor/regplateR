@@ -6,7 +6,7 @@ Authors@R:
            family = "Taylor",
            role = c("aut", "cre"),
            email = "tjtnew@outlook.com")
-URL: https://github.com/tjtnew/regplateR
+URL: https://tjtnew.github.io/regplateR/, https://github.com/tjtnew/regplateR
 BugReports: https://github.com/tjtnew/regplateR/issues
 Description: Functions to validate and, where possible, date UK vehicle 
   registration plates.

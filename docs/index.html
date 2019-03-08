@@ -76,51 +76,6 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#regplater" class="anchor"></a>regplateR</h1></div>
 <p><code>regplateR</code> provides functions that validate and, in some cases, date registration plate formats that matches the common patterns of GB registration plates. It was inspired by this <a href="https://gist.github.com/harry-jones/755501192139820eeb65e030fe878f75">gist</a>. and further information can be found on the corresponding <a href="https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom">wikipedia page</a>.</p>
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
-<p>For the moment <code>regplateR</code> is quite broad in what is accepted as a valid plate, with four different formats currently accepted with no additional rules applied.</p>
-<div id="current-gb-format" class="section level4">
-<h4 class="hasAnchor">
-<a href="#current-gb-format" class="anchor"></a><a href="https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#Current_system">Current GB format</a>
-</h4>
-<p>Current car registration plates (from 01 September 2001) must be of the form:</p>
-<ul>
-<li>2 letters, 2 numbers, 3 letters (e.g. BD51 SMR)</li>
-</ul>
-</div>
-<div id="prefix-gb-format" class="section level4">
-<h4 class="hasAnchor">
-<a href="#prefix-gb-format" class="anchor"></a><a href="https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1983_to_2001">Prefix GB format</a>
-</h4>
-<p>Between 01 August 1983 and 31 August 2001 registration plates had a one letter prefix and were of the form:</p>
-<ul>
-<li>1 letter, 1 to 3 numbers, 3 letters (e.g. P888 PPE)</li>
-</ul>
-</div>
-<div id="suffix-gb-format" class="section level4">
-<h4 class="hasAnchor">
-<a href="#suffix-gb-format" class="anchor"></a><a href="https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1963_to_1982">Suffix GB format</a>
-</h4>
-<p>Between February 1963 to 31 July 1983 registration plates had a one letter suffix and were of the form:</p>
-<ul>
-<li>3 letters, 1 to 3 numbers, 1 letter (e.g. FVL 144M)</li>
-</ul>
-</div>
-<div id="dateless-format" class="section level4">
-<h4 class="hasAnchor">
-<a href="#dateless-format" class="anchor"></a><a href="https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#History">Dateless format</a>
-</h4>
-<p>Pre 1963 (I think) registration plates had one of the following forms:</p>
-<ul>
-<li>1 to 4 numbers, 1 to 2 letters</li>
-<li>1 to 3 numbers, 1 to 3 letters (e.g. 112 DFH)</li>
-<li>1 to 2 letters, 1 to 4 numbers</li>
-<li>1 to 3 letters, 1 to 3 numbers (e.g. MLP 6)</li>
-</ul>
-<p>Confusingly these can also overlap with Northern Ireland (NI) plates that take a similar form. At present the package makes no attempts to identify NI plates.</p>
-</div>
-</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -187,6 +142,51 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
+<p>For the moment <code>regplateR</code> is quite broad in what is accepted as a valid plate, with four different formats currently accepted with no additional rules applied.</p>
+<div id="current-gb-format" class="section level4">
+<h4 class="hasAnchor">
+<a href="#current-gb-format" class="anchor"></a><a href="https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#Current_system">Current GB format</a>
+</h4>
+<p>Current car registration plates (from 01 September 2001) must be of the form:</p>
+<ul>
+<li>2 letters, 2 numbers, 3 letters (e.g. BD51 SMR)</li>
+</ul>
+</div>
+<div id="prefix-gb-format" class="section level4">
+<h4 class="hasAnchor">
+<a href="#prefix-gb-format" class="anchor"></a><a href="https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1983_to_2001">Prefix GB format</a>
+</h4>
+<p>Between 01 August 1983 and 31 August 2001 registration plates had a one letter prefix and were of the form:</p>
+<ul>
+<li>1 letter, 1 to 3 numbers, 3 letters (e.g. P888 PPE)</li>
+</ul>
+</div>
+<div id="suffix-gb-format" class="section level4">
+<h4 class="hasAnchor">
+<a href="#suffix-gb-format" class="anchor"></a><a href="https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1963_to_1982">Suffix GB format</a>
+</h4>
+<p>Between February 1963 to 31 July 1983 registration plates had a one letter suffix and were of the form:</p>
+<ul>
+<li>3 letters, 1 to 3 numbers, 1 letter (e.g. FVL 144M)</li>
+</ul>
+</div>
+<div id="dateless-format" class="section level4">
+<h4 class="hasAnchor">
+<a href="#dateless-format" class="anchor"></a><a href="https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#History">Dateless format</a>
+</h4>
+<p>Pre 1963 (I think) registration plates had one of the following forms:</p>
+<ul>
+<li>1 to 4 numbers, 1 to 2 letters</li>
+<li>1 to 3 numbers, 1 to 3 letters (e.g. 112 DFH)</li>
+<li>1 to 2 letters, 1 to 4 numbers</li>
+<li>1 to 3 letters, 1 to 3 numbers (e.g. MLP 6)</li>
+</ul>
+<p>Confusingly these can also overlap with Northern Ireland (NI) plates that take a similar form. At present the package makes no attempts to identify NI plates.</p>
+</div>
 </div>
 </div>
   </div>

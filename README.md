@@ -18,6 +18,49 @@ registration plates. It was inspired by this
 and further information can be found on the corresponding [wikipedia
 page](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom).
 
+## Installation
+
+``` r
+# Development version from GitHub
+devtools::install_github("tjtnew/regplateR")
+```
+
+## Example
+
+``` r
+library(regplateR)
+
+# example plates
+reg_plates <-   c("BD63 SMR", "BD15 SMR", "BD50 SMR", # current
+                 "test", "test",                      # invalid
+                 "P888 PPE",                          # prefix
+                 "FVL 144M",                          # suffix
+                 "112 DFH", "MLP 6")                  # dateless
+
+# valid registrations
+valid_idx <- valid_reg(reg_plates)
+valid_plates <- reg_plates[valid_idx]
+valid_plates
+#> [1] "BD63 SMR" "BD15 SMR" "BD50 SMR" "P888 PPE" "FVL 144M" "112 DFH" 
+#> [7] "MLP 6"
+
+# earliest registration of plates
+reg_plates_date <- reg_date(valid_plates)
+reg_plates_date
+#> [1] "2013-09-01" "2015-03-01" "2050-03-01" "1996-08-01" "1973-08-01"
+#> [6] NA           NA
+```
+
+| Registrations | Date       |
+| :------------ | :--------- |
+| BD63 SMR      | 2013-09-01 |
+| BD15 SMR      | 2015-03-01 |
+| BD50 SMR      | 2050-03-01 |
+| P888 PPE      | 1996-08-01 |
+| FVL 144M      | 1973-08-01 |
+| 112 DFH       | NA         |
+| MLP 6         | NA         |
+
 ## Overview
 
 For the moment `regplateR` is quite broad in what is accepted as a valid
@@ -61,46 +104,3 @@ Pre 1963 (I think) registration plates had one of the following forms:
 Confusingly these can also overlap with Northern Ireland (NI) plates
 that take a similar form. At present the package makes no attempts to
 identify NI plates.
-
-## Installation
-
-``` r
-# Development version from GitHub
-devtools::install_github("tjtnew/regplateR")
-```
-
-## Example
-
-``` r
-library(regplateR)
-
-# example plates
-reg_plates <-   c("BD63 SMR", "BD15 SMR", "BD50 SMR", # current
-                 "test", "test",                      # invalid
-                 "P888 PPE",                          # prefix
-                 "FVL 144M",                          # suffix
-                 "112 DFH", "MLP 6")                  # dateless
-
-# valid registrations
-valid_idx <- valid_reg(reg_plates)
-valid_plates <- reg_plates[valid_idx]
-valid_plates
-#> [1] "BD63 SMR" "BD15 SMR" "BD50 SMR" "P888 PPE" "FVL 144M" "112 DFH" 
-#> [7] "MLP 6"
-
-# earliest registration of plates
-reg_plates_date <- reg_date(valid_plates)
-reg_plates_date
-#> [1] "2013-09-01" "2015-03-01" "2050-03-01" "1996-08-01" "1973-08-01"
-#> [6] NA           NA
-```
-
-| Registrations | Date       |
-| :------------ | :--------- |
-| BD63 SMR      | 2013-09-01 |
-| BD15 SMR      | 2015-03-01 |
-| BD50 SMR      | 2050-03-01 |
-| P888 PPE      | 1996-08-01 |
-| FVL 144M      | 1973-08-01 |
-| 112 DFH       | NA         |
-| MLP 6         | NA         |
