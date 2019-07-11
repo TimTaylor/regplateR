@@ -5,15 +5,18 @@
 #' @return the earliest possible registration date of the given reg plates
 #' @keywords internal
 current_reg_date <- function(x) {
-  period_1 <- "-03-01"
-  period_2 <- "-09-01"
-  id <- as.numeric(substr(x, 3, 4))
-  my_date <- ifelse (id < 51,
-                     paste0(2000 + id, period_1),
-                     paste0(1950 + id, period_2))
-  my_date <- as.Date(my_date)
-  my_date
+
+    x <- case_and_space(x) # remove whitespace and ensure upper case
+
+    period_1 <- "-03-01"
+    period_2 <- "-09-01"
+    id <- as.numeric(substr(x, 3, 4))
+    my_date <- ifelse (id < 51,
+                       paste0(2000 + id, period_1),
+                       paste0(1950 + id, period_2))
+    as.Date(my_date)
 }
+
 
 #' Registration date of prefix style number plates
 #'
@@ -22,6 +25,9 @@ current_reg_date <- function(x) {
 #' @return the earliest possible registration date of the given reg plates
 #' @keywords internal
 prefix_reg_date <- function(x) {
+  
+  x <- case_and_space(x) # remove whitespace and ensure upper case
+  
   lookup <- c("A" = as.Date("1983-08-01"),
               "B" = as.Date("1984-08-01"),
               "C" = as.Date("1985-08-01"),
@@ -44,13 +50,7 @@ prefix_reg_date <- function(x) {
               "X" = as.Date("2000-09-01"),
               "Y" = as.Date("2001-03-01"))
 
-  # remove whitespace
-  x <- gsub("\\s", "", x)
-
-  # convert to upper case
-  x <- toupper(x)
-
-  id <- substr(x, 1, 1)
+  id <- substr(x, 1, 1) # date represented by first letter
   unname(lookup[id])
 }
 
@@ -62,7 +62,9 @@ prefix_reg_date <- function(x) {
 #' @return the earliest possible registration date of the given reg plates
 #' @keywords internal
 suffix_reg_date <- function(x) {
-
+  
+  x <- case_and_space(x) # remove whitespace and ensure upper case
+  
   lookup <- c("A" = as.Date("1963-02-01"),
               "B" = as.Date("1964-01-01"),
               "C" = as.Date("1965-01-01"),
@@ -85,13 +87,7 @@ suffix_reg_date <- function(x) {
               "X" = as.Date("1981-08-01"),
               "Y" = as.Date("1982-08-01"))
 
-  # remove whitespace
-  x <- gsub("\\s", "", x)
-
-  # convert to upper case
-  x <- toupper(x)
-
-  id <- substr(x, nchar(x), nchar(x))
+  id <- substr(x, nchar(x), nchar(x)) # last character represents year
   unname(lookup[id])
 }
 

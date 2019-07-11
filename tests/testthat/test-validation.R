@@ -10,16 +10,13 @@ test_that("reg_match works ignoring case and whitespace", {
                  "TE         st")
 
   # pattern to match
-  pattern <- "TEST"
-
-  # indices matching pattern
-  matches <- reg_match(test_case, pattern, perl = TRUE)
-
-  # expected result
-  expected <- c(2, 4)
+  expected <- c("BOB",
+               "TEST",
+               "GEORGE",
+               "TEST")
 
   # test
-  expect_equal(matches, expected)
+  expect_equal(case_and_space(test_case), expected)
 })
 
 

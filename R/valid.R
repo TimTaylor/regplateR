@@ -1,31 +1,3 @@
-#' Match registrations to a regex pattern
-#'
-#' Wrapper function around grep that returns the indices of the vector that
-#' match the provided regular expression.  To help with matching whitespace and
-#' case are ignored.
-#'
-#' @param x character vector of registrations
-#' @param my_regex regex pattern you want to match
-#' @param ... additional arguments that \code{grep} can use
-#'
-#' @return indices of x that match the given pattern
-#' @keywords internal
-reg_match <- function(x, my_regex, ...) {
-
-  # remove whitespace
-  x <- gsub("\\s", "", x)
-
-  # convert to upper case
-  x <- toupper(x)
-
-  # pattern for registrations
-  pattern <- my_regex
-
-  # return indices of current registrations
-  grep(pattern, x, ...)
-}
-
-
 #' Match current car registration plates (from 01 September 2001)
 #'
 #' Matches all character inputs of the form 2 letters, 2 numbers, 3 letters.
@@ -35,8 +7,13 @@ reg_match <- function(x, my_regex, ...) {
 #' @return indices of x that match current registration pattern
 #' @export
 current_reg <- function(x) {
-  pattern <- "(^[A-Z]{2}[0-9]{2}[A-Z]{3}$)"
-  reg_match(x, pattern, perl = TRUE)
+
+    # remove whitespace and ensure upper case
+    x <- case_and_space(x)
+
+    # matching
+    pattern <- "(^[A-Z]{2}[0-9]{2}[A-Z]{3}$)"
+    grep(pattern, x, perl = TRUE)    
 }
 
 
@@ -50,8 +27,13 @@ current_reg <- function(x) {
 #' @return indices of x that match current registration pattern
 #' @export
 prefix_reg <- function(x) {
-  pattern <- "(^[A-Z][0-9]{1,3}[A-Z]{3}$)"
-  reg_match(x, pattern, perl = TRUE)
+
+    # remove whitespace and ensure upper case
+    x <- case_and_space(x)
+
+    # matching
+    pattern <- "(^[A-Z][0-9]{1,3}[A-Z]{3}$)"
+    grep(pattern, x, perl = TRUE)
 }
 
 
@@ -65,9 +47,16 @@ prefix_reg <- function(x) {
 #' @return indices of x that match current registration pattern
 #' @export
 suffix_reg <- function(x) {
-  pattern <- "(^[A-Z]{3}[0-9]{1,3}[A-Z]$)"
-  reg_match(x, pattern, perl = TRUE)
+
+    # remove whitespace and ensure upper case
+    x <- case_and_space(x)
+
+    # matching
+    pattern <- "(^[A-Z]{3}[0-9]{1,3}[A-Z]$)"
+    grep(pattern, x, perl = TRUE)
 }
+
+
 
 #' Match dateless car registration plates (pre 1963 - I believe)
 #'
@@ -83,20 +72,23 @@ suffix_reg <- function(x) {
 #' @export
 dateless_reg <- function(x) {
 
-  # regex
-  dateless_1 <- "(^[0-9]{1,4}[A-Z]{1,2}$)"
-  dateless_2 <- "(^[0-9]{1,3}[A-Z]{1,3}$)"
-  dateless_3 <- "(^[A-Z]{1,2}[0-9]{1,4}$)"
-  dateless_4 <- "(^[A-Z]{1,3}[0-9]{1,3}$)"
+    # remove whitespace and ensure upper case
+    x <- case_and_space(x)
 
-  # all dateless regex
-  pattern <- paste(dateless_1,
-                   dateless_2,
-                   dateless_3,
-                   dateless_4,
-                   sep = "|")
+    # define pattern
+    dateless_1 <- "(^[0-9]{1,4}[A-Z]{1,2}$)"
+    dateless_2 <- "(^[0-9]{1,3}[A-Z]{1,3}$)"
+    dateless_3 <- "(^[A-Z]{1,2}[0-9]{1,4}$)"
+    dateless_4 <- "(^[A-Z]{1,3}[0-9]{1,3}$)"
 
-  reg_match(x, pattern, perl = TRUE)
+    pattern <- paste(dateless_1,
+                     dateless_2,
+                     dateless_3,
+                     dateless_4,
+                     sep = "|")
+
+    # perform matching
+    grep(pattern, x, perl = TRUE)
 }
 
 
@@ -120,24 +112,26 @@ dateless_reg <- function(x) {
 #' @export
 valid_reg <- function(x) {
 
-  # regex
-  current <- "(^[A-Z]{2}[0-9]{2}\\s?[A-Z]{3}$)"
-  prefix <- "(^[A-Z][0-9]{1,3}[A-Z]{3}$)"
-  suffix <- "(^[A-Z]{3}[0-9]{1,3}[A-Z]$)"
-  dateless_1 <- "(^[0-9]{1,4}[A-Z]{1,2}$)"
-  dateless_2 <- "(^[0-9]{1,3}[A-Z]{1,3}$)"
-  dateless_3 <- "(^[A-Z]{1,2}[0-9]{1,4}$)"
-  dateless_4 <- "(^[A-Z]{1,3}[0-9]{1,3}$)"
+    # remove whitespace and ensure upper case
+    x <- case_and_space(x)
 
-  # all valid licences
-  pattern <- paste(current,
-                   prefix,
-                   suffix,
-                   dateless_1,
-                   dateless_2,
-                   dateless_3,
-                   dateless_4,
-                   sep = "|")
+    # define pattern
+    current <- "(^[A-Z]{2}[0-9]{2}\\s?[A-Z]{3}$)"
+    prefix <- "(^[A-Z][0-9]{1,3}[A-Z]{3}$)"
+    suffix <- "(^[A-Z]{3}[0-9]{1,3}[A-Z]$)"
+    dateless_1 <- "(^[0-9]{1,4}[A-Z]{1,2}$)"
+    dateless_2 <- "(^[0-9]{1,3}[A-Z]{1,3}$)"
+    dateless_3 <- "(^[A-Z]{1,2}[0-9]{1,4}$)"
+    dateless_4 <- "(^[A-Z]{1,3}[0-9]{1,3}$)"
 
-  reg_match(x, pattern, perl = TRUE)
+    pattern <- paste(current,
+                     prefix,
+                     suffix,
+                     dateless_1,
+                     dateless_2,
+                     dateless_3,
+                     dateless_4,
+                     sep = "|")
+
+    grep(pattern, x, perl = TRUE)
 }
