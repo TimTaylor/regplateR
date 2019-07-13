@@ -11,12 +11,14 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 
 # regplateR
 
-`regplateR` provides functions that validate and, in some cases, date
-registration plate formats that matches the common patterns of GB
-registration plates. It was inspired by this
-[gist](https://gist.github.com/harry-jones/755501192139820eeb65e030fe878f75).
-and further information can be found on the corresponding [wikipedia
+`regplateR` is an `R` package to validate and date GB vehicles
+registration plates. This
+[gist](https://gist.github.com/danielrbradley/7567269) by Daniel Bradley
+helped with the regular expressions and further information was obtained
+from this [wikipedia
 page](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom).
+Please note it does not check that a valid plate is actually in use only
+that it is of the correct format.
 
 ## Installation
 
@@ -24,6 +26,17 @@ page](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Ki
 # Development version from GitHub
 devtools::install_github("tjtnew/regplateR")
 ```
+
+## available functions
+
+| Function          | returns                                               |
+| ----------------- | ----------------------------------------------------- |
+| `current_reg(x)`  | index of plates in `x` in the current format          |
+| `prefix_reg(x)`   | index of plates in `x` in the prefix format           |
+| `suffix_reg(x)`   | index of plates in `x` in the suffix format           |
+| `dateless_reg(x)` | index of plates in `x` in the dateless format         |
+| `valid_reg(x)`    | index of plates in `x` in the 1 of above formats      |
+| `reg_date(x)`     | earliest possible registration dates of plates in `x` |
 
 ## Example
 
@@ -51,24 +64,14 @@ reg_plates_date
 #> [6] NA           NA
 ```
 
-| Registrations | Date       |
-| :------------ | :--------- |
-| BD63 SMR      | 2013-09-01 |
-| BD15 SMR      | 2015-03-01 |
-| BD50 SMR      | 2050-03-01 |
-| P888 PPE      | 1996-08-01 |
-| FVL 144M      | 1973-08-01 |
-| 112 DFH       | NA         |
-| MLP 6         | NA         |
-
-## Overview
+## Implementation overview
 
 For the moment `regplateR` is quite broad in what is accepted as a valid
 plate, with four different formats currently accepted with no additional
 rules
-applied.
+applied
 
-#### [Current GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#Current_system)
+### [Current GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#Current_system)
 
 Current car registration plates (from 01 September 2001) must be of the
 form:
@@ -76,7 +79,7 @@ form:
   - 2 letters, 2 numbers, 3 letters (e.g. BD51
 SMR)
 
-#### [Prefix GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1983_to_2001)
+### [Prefix GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1983_to_2001)
 
 Between 01 August 1983 and 31 August 2001 registration plates had a one
 letter prefix and were of the form:
@@ -84,7 +87,7 @@ letter prefix and were of the form:
   - 1 letter, 1 to 3 numbers, 3 letters (e.g. P888
 PPE)
 
-#### [Suffix GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1963_to_1982)
+### [Suffix GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1963_to_1982)
 
 Between February 1963 to 31 July 1983 registration plates had a one
 letter suffix and were of the form:
@@ -92,7 +95,7 @@ letter suffix and were of the form:
   - 3 letters, 1 to 3 numbers, 1 letter (e.g. FVL
 144M)
 
-#### [Dateless format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#History)
+### [Dateless format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#History)
 
 Pre 1963 (I think) registration plates had one of the following forms:
 
@@ -104,3 +107,10 @@ Pre 1963 (I think) registration plates had one of the following forms:
 Confusingly these can also overlap with Northern Ireland (NI) plates
 that take a similar form. At present the package makes no attempts to
 identify NI plates.
+
+## Future work
+
+There are many additional validations that still need to be incorporated
+in the package (e.g. “I” and “Q” cannot be used in the three-letter
+sequence of current registration plates). I’ve started an incomplete
+list of these in the issues tracker.
