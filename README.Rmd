@@ -66,7 +66,7 @@ reg_plates_date <- reg_date(valid_plates)
 reg_plates_date
 ```
 
-## Implementation overview
+## Validation overview
 For the moment `regplateR` is quite broad in what is accepted as a valid plate,
 with four different formats currently accepted with no additional rules applied
 
