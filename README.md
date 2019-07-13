@@ -112,5 +112,4 @@ identify NI plates.
 
 There are many additional validations that still need to be incorporated
 in the package (e.g. “I” and “Q” cannot be used in the three-letter
-sequence of current registration plates). I’ve started an incomplete
-list of these in the issues tracker.
+sequence of current registration plates).
