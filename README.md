@@ -64,7 +64,7 @@ reg_plates_date
 #> [6] NA           NA
 ```
 
-## Implementation overview
+## Validation overview
 
 For the moment `regplateR` is quite broad in what is accepted as a valid
 plate, with four different formats currently accepted with no additional
