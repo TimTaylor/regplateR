@@ -99,7 +99,7 @@ Confusingly these can also overlap with Northern Ireland (NI) plates that take
 a similar form.  At present the package makes no attempts to identify NI
 plates.
 
-## Future work
+## Future work (see issues)
 There are many additional validations that still need to be incorporated in the
 package (e.g. "I" and "Q" cannot be used in the three-letter sequence of
 current registration plates).
