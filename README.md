@@ -7,6 +7,9 @@
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Build
+Status](https://travis-ci.org/tjtnew/regplateR.svg?branch=master)](https://travis-ci.org/tjtnew/regplateR)
+[![codecov](https://codecov.io/gh/tjtnew/regplateR/branch/master/graph/badge.svg)](https://codecov.io/gh/tjtnew/regplateR)
 <!-- badges: end -->
 
 # regplateR
