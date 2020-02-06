@@ -6,7 +6,7 @@ on:
     branches:
       - master
   schedule:
-    - cron:  '30 11 * * *'
+    - cron:  '30 11 * * 4'
 
 
 name: R-CMD-check
