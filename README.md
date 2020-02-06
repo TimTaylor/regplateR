@@ -7,6 +7,8 @@
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![R build
+status](https://github.com/tjtnew/regplateR/workflows/R-CMD-check/badge.svg)](https://github.com/tjtnew/regplateR/actions)
 <!-- badges: end -->
 
 # regplateR
@@ -54,8 +56,7 @@ reg_plates <-   c("BD63 SMR", "BD15 SMR", "BD50 SMR", # current
 valid_idx <- valid_reg(reg_plates)
 valid_plates <- reg_plates[valid_idx]
 valid_plates
-#> [1] "BD63 SMR" "BD15 SMR" "BD50 SMR" "P888 PPE" "FVL 144M" "112 DFH" 
-#> [7] "MLP 6"
+#> [1] "BD63 SMR" "BD15 SMR" "BD50 SMR" "P888 PPE" "FVL 144M" "112 DFH"  "MLP 6"
 
 # earliest registration of plates
 reg_plates_date <- reg_date(valid_plates)
