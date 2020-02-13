@@ -6,7 +6,7 @@ on:
     branches:
       - master
   schedule:
-    - cron:  '30 11 * * 4'
+    - cron:  '0 0 * * 0'
 
 
 name: R-CMD-check
@@ -49,7 +49,8 @@ jobs:
           restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
 
       - name: Install dependencies
-        run: Rscript -e "library(remotes)" -e "update(readRDS('depends.Rds'))" -e "remotes::install_cran('rcmdcheck')"
+        run: Rscript -e "library(remotes)" -e "deps <- readRDS('depends.Rds')" -e "deps[['installed']] <- vapply(deps[['package']], remotes:::local_sha, character(1))" -e "update(deps)" -e "remotes::install_cran('rcmdcheck')"
+
 
       - name: Check
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'warning', check_dir = 'check')"
