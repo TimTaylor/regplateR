@@ -1,6 +1,6 @@
 Package: regplateR
 Title: Validation and Ageing of GB Vehicle Registration Plates
-Version: 0.0.1
+Version: 0.0.1.9
 Authors@R: person(given = "Tim", family = "Taylor", role = c("aut", "cre"), email =
           "tjtnew@outlook.com")
 URL: https://tjtnew.github.io/regplateR/, https://github.com/tjtnew/regplateR
