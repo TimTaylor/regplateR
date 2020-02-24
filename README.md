@@ -6,9 +6,11 @@
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle:
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![R build
 status](https://github.com/tjtnew/regplateR/workflows/R-CMD-check/badge.svg)](https://github.com/tjtnew/regplateR/actions)
+
 <!-- badges: end -->
 
 # regplateR
@@ -69,32 +71,28 @@ reg_plates_date
 
 For the moment `regplateR` is quite broad in what is accepted as a valid
 plate, with four different formats currently accepted with no additional
-rules
-applied
+rules applied
 
 ### [Current GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#Current_system)
 
 Current car registration plates (from 01 September 2001) must be of the
 form:
 
-  - 2 letters, 2 numbers, 3 letters (e.g. BD51
-SMR)
+  - 2 letters, 2 numbers, 3 letters (e.g. BD51 SMR)
 
 ### [Prefix GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1983_to_2001)
 
 Between 01 August 1983 and 31 August 2001 registration plates had a one
 letter prefix and were of the form:
 
-  - 1 letter, 1 to 3 numbers, 3 letters (e.g. P888
-PPE)
+  - 1 letter, 1 to 3 numbers, 3 letters (e.g. P888 PPE)
 
 ### [Suffix GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1963_to_1982)
 
 Between February 1963 to 31 July 1983 registration plates had a one
 letter suffix and were of the form:
 
-  - 3 letters, 1 to 3 numbers, 1 letter (e.g. FVL
-144M)
+  - 3 letters, 1 to 3 numbers, 1 letter (e.g. FVL 144M)
 
 ### [Dateless format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#History)
 
@@ -112,5 +110,5 @@ identify NI plates.
 ## Future work (see issues)
 
 There are many additional validations that still need to be incorporated
-in the package (e.g. “I” and “Q” cannot be used in the three-letter
+in the package (e.g. “I” and “Q” cannot be used in the three-letter
 sequence of current registration plates).
