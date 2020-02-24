@@ -10,7 +10,7 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![R build
 status](https://github.com/tjtnew/regplateR/workflows/R-CMD-check/badge.svg)](https://github.com/tjtnew/regplateR/actions)
-
+[![codecov](https://codecov.io/gh/tjtnew/regplateR/branch/master/graph/badge.svg)](https://codecov.io/gh/tjtnew/regplateR)
 <!-- badges: end -->
 
 # regplateR
