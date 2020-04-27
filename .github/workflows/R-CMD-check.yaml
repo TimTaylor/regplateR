@@ -25,15 +25,15 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - { os: windows-latest, r: 'release'}
+        - { os: macOS-latest, r: 'release'}
         - { os: macOS-latest, r: 'devel'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      CRAN: ${{ matrix.config.cran }}
+      RSPM: ${{ matrix.config.rspm }}
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - uses: r-lib/actions/setup-r@master
         with:
@@ -44,7 +44,7 @@ jobs:
       - name: Query dependencies
         run: |
           install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
 
       - name: Cache R packages
@@ -52,7 +52,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
+          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
 
       - name: Install system dependencies
@@ -65,15 +65,15 @@ jobs:
           sudo -s eval "$sysreqs"
       - name: Install dependencies
         run: |
-          library(remotes)
-          deps <- readRDS("depends.Rds")
-          deps[["installed"]] <- vapply(deps[["package"]], remotes:::local_sha, character(1))
-          update(deps)
+          remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
+          remotes::install_cran("covr")
         shell: Rscript {0}
 
       - name: Check
-        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning", check_dir = "check")
+        env:
+          _R_CHECK_CRAN_INCOMING_REMOTE_: false
+        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
       - name: Upload check results
@@ -85,5 +85,5 @@ jobs:
 
       - name: Test coverage
         if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'devel'
-        run: covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
+        run: covr::codecov()
         shell: Rscript {0}
