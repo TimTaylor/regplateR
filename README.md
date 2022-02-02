@@ -1,17 +1,4 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-<!-- badges: start -->
-
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![R build
-status](https://github.com/tjtnew/regplateR/workflows/R-CMD-check/badge.svg)](https://github.com/tjtnew/regplateR/actions)
-[![codecov](https://codecov.io/gh/tjtnew/regplateR/branch/master/graph/badge.svg)](https://codecov.io/gh/tjtnew/regplateR)
-<!-- badges: end -->
 
 # regplateR
 
@@ -21,8 +8,6 @@ registration plates. This
 helped with the regular expressions and further information was obtained
 from this [wikipedia
 page](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom).
-Please note it does not check that a valid plate is actually in use only
-that it is of the correct format.
 
 ## Installation
 
@@ -33,14 +18,40 @@ devtools::install_github("tjtnew/regplateR")
 
 ## available functions
 
-| Function          | returns                                               |
-| ----------------- | ----------------------------------------------------- |
-| `current_reg(x)`  | index of plates in `x` in the current format          |
-| `prefix_reg(x)`   | index of plates in `x` in the prefix format           |
-| `suffix_reg(x)`   | index of plates in `x` in the suffix format           |
-| `dateless_reg(x)` | index of plates in `x` in the dateless format         |
-| `valid_reg(x)`    | index of plates in `x` in the 1 of above formats      |
-| `reg_date(x)`     | earliest possible registration dates of plates in `x` |
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>returns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>isCurrentReg(x)</code></td>
+<td>index of plates in <code>x</code> in the current format</td>
+</tr>
+<tr class="even">
+<td><code>isPrefixReg(x)</code></td>
+<td>index of plates in <code>x</code> in the prefix format</td>
+</tr>
+<tr class="odd">
+<td><code>isSuffixReg(x)</code></td>
+<td>index of plates in <code>x</code> in the suffix format</td>
+</tr>
+<tr class="even">
+<td><code>isDatelessReg(x)</code></td>
+<td>index of plates in <code>x</code> in the dateless format</td>
+</tr>
+<tr class="odd">
+<td><code>isValidReg(x)</code></td>
+<td>index of plates in <code>x</code> in the 1 of above formats</td>
+</tr>
+<tr class="even">
+<td><code>regDate(x)</code></td>
+<td>earliest possible registration dates of plates in <code>x</code></td>
+</tr>
+</tbody>
+</table>
 
 ## Example
 
@@ -48,21 +59,20 @@ devtools::install_github("tjtnew/regplateR")
 library(regplateR)
 
 # example plates
-reg_plates <-   c("BD63 SMR", "BD15 SMR", "BD50 SMR", # current
-                 "test", "test",                      # invalid
-                 "P888 PPE",                          # prefix
-                 "FVL 144M",                          # suffix
-                 "112 DFH", "MLP 6")                  # dateless
+plates <-   c("BD63 SMR", "BD15 SMR", "BD50 SMR",  # current
+              "test", "test",                      # invalid
+              "P888 PPE",                          # prefix
+              "FVL 144M",                          # suffix
+              "112 DFH", "MLP 6")                  # dateless
 
 # valid registrations
-valid_idx <- valid_reg(reg_plates)
-valid_plates <- reg_plates[valid_idx]
+valid_idx <- isValidReg(plates)
+valid_plates <- plates[valid_idx]
 valid_plates
 #> [1] "BD63 SMR" "BD15 SMR" "BD50 SMR" "P888 PPE" "FVL 144M" "112 DFH"  "MLP 6"
 
 # earliest registration of plates
-reg_plates_date <- reg_date(valid_plates)
-reg_plates_date
+regDate(valid_plates)
 #> [1] "2013-09-01" "2015-03-01" "2050-03-01" "1996-08-01" "1973-08-01"
 #> [6] NA           NA
 ```
@@ -78,36 +88,36 @@ rules applied
 Current car registration plates (from 01 September 2001) must be of the
 form:
 
-  - 2 letters, 2 numbers, 3 letters (e.g. BD51 SMR)
+-   2 letters, 2 numbers, 3 letters (e.g. BD51 SMR)
 
 ### [Prefix GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1983_to_2001)
 
 Between 01 August 1983 and 31 August 2001 registration plates had a one
 letter prefix and were of the form:
 
-  - 1 letter, 1 to 3 numbers, 3 letters (e.g. P888 PPE)
+-   1 letter, 1 to 3 numbers, 3 letters (e.g. P888 PPE)
 
 ### [Suffix GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#1963_to_1982)
 
 Between February 1963 to 31 July 1983 registration plates had a one
 letter suffix and were of the form:
 
-  - 3 letters, 1 to 3 numbers, 1 letter (e.g. FVL 144M)
+-   3 letters, 1 to 3 numbers, 1 letter (e.g. FVL 144M)
 
 ### [Dateless format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#History)
 
 Pre 1963 (I think) registration plates had one of the following forms:
 
-  - 1 to 4 numbers, 1 to 2 letters
-  - 1 to 3 numbers, 1 to 3 letters (e.g. 112 DFH)
-  - 1 to 2 letters, 1 to 4 numbers
-  - 1 to 3 letters, 1 to 3 numbers (e.g. MLP 6)
+-   1 to 4 numbers, 1 to 2 letters
+-   1 to 3 numbers, 1 to 3 letters (e.g. 112 DFH)
+-   1 to 2 letters, 1 to 4 numbers
+-   1 to 3 letters, 1 to 3 numbers (e.g. MLP 6)
 
 Confusingly these can also overlap with Northern Ireland (NI) plates
 that take a similar form. At present the package makes no attempts to
 identify NI plates.
 
-## Future work (see issues)
+## Improvements needed
 
 There are many additional validations that still need to be incorporated
 in the package (e.g. “I” and “Q” cannot be used in the three-letter

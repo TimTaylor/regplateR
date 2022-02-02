@@ -1,17 +1,15 @@
 Package: regplateR
 Title: Validation and Ageing of GB Vehicle Registration Plates
-Version: 0.0.1.9
-Authors@R: person(given = "Tim", family = "Taylor", role = c("aut", "cre"), email =
-          "tjtnew@gmail.com")
+Version: 0.0.2
+Authors@R: person(given = "Tim", family = "Taylor", role = c("aut", "cre"),
+                  email = "tim.taylor@hiddenelephants.co.uk")
 URL: https://tjtnew.github.io/regplateR/, https://github.com/tjtnew/regplateR
 BugReports: https://github.com/tjtnew/regplateR/issues
-Description: Functions to validate and, where possible, date GB vehicle registration
-          plates.
+Description: Functions to validate and, where possible, date GB vehicle
+             registration plates.
 License: GPL (>=2)
 Encoding: UTF-8
 Language: en-GB
-LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.2
 Suggests: 
-    testthat (>= 2.1.0),
-    covr
+    tinytest

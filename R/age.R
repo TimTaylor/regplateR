@@ -1,33 +1,42 @@
-#' Registration date of current number plates
+#' Return registration date of number plate(s)
 #'
-#' @param x character vector of current-style registration plates
+#' @param x character vector of registrations
 #'
-#' @return the earliest possible registration date of the given reg plates
-#' @keywords internal
-current_reg_date <- function(x) {
+#' @return The corresponding registration plate dates
+#' @export
+regDate <- function(x) {
 
-    x <- case_and_space(x) # remove whitespace and ensure upper case
+    x <- .toupperRemoveWhitespace(x)
 
-    period_1 <- "-03-01"
-    period_2 <- "-09-01"
+    dates <- rep(NA_real_, length(x))
+    dates <- as.Date(dates)
+
+    idx <- isCurrentReg(x)
+    dates[idx] <- .currentRegDate(x[idx])
+
+    idx <- isPrefixReg(x)
+    dates[idx] <- .prefixRegDate(x[idx])
+
+    idx <- isSuffixReg(x)
+    dates[idx] <- .suffixRegDate(x[idx])
+
+    dates
+}
+
+
+# the earliest possible registration date of current-style registration plates
+.currentRegDate <- function(x) {
+    p1 <- "-03-01"
+    p2 <- "-09-01"
     id <- as.numeric(substr(x, 3, 4))
-    my_date <- ifelse (id < 51,
-                       paste0(2000 + id, period_1),
-                       paste0(1950 + id, period_2))
+    my_date <- ifelse (id < 51, paste0(2000 + id, p1), paste0(1950 + id, p2))
     as.Date(my_date)
 }
 
 
-#' Registration date of prefix style number plates
-#'
-#' @param x character vector of prefix-style registration plates
-#'
-#' @return the earliest possible registration date of the given reg plates
-#' @keywords internal
-prefix_reg_date <- function(x) {
-  
-  x <- case_and_space(x) # remove whitespace and ensure upper case
-  
+# the earliest possible registration date of prefix style number plates
+.prefixRegDate <- function(x) {
+
   lookup <- c("A" = as.Date("1983-08-01"),
               "B" = as.Date("1984-08-01"),
               "C" = as.Date("1985-08-01"),
@@ -55,16 +64,9 @@ prefix_reg_date <- function(x) {
 }
 
 
-#' Registration date of suffix style number plates
-#'
-#' @param x character vector of suffix-style registration plates
-#'
-#' @return the earliest possible registration date of the given reg plates
-#' @keywords internal
-suffix_reg_date <- function(x) {
-  
-  x <- case_and_space(x) # remove whitespace and ensure upper case
-  
+# the earliest possible registration date of suffix style number plates
+.suffixRegDate <- function(x) {
+
   lookup <- c("A" = as.Date("1963-02-01"),
               "B" = as.Date("1964-01-01"),
               "C" = as.Date("1965-01-01"),
@@ -89,27 +91,4 @@ suffix_reg_date <- function(x) {
 
   id <- substr(x, nchar(x), nchar(x)) # last character represents year
   unname(lookup[id])
-}
-
-
-#' Return registration date of number plate(s)
-#'
-#' @param x character vector of registrations
-#'
-#' @return The corresponding registration plate dates
-#' @export
-reg_date <- function(x) {
-  dates <- rep(NA, length(x))
-  dates <- as.Date(dates)
-
-  idx <- current_reg(x)
-  dates[idx] <- current_reg_date(x[idx])
-
-  idx <- prefix_reg(x)
-  dates[idx] <- prefix_reg_date(x[idx])
-
-  idx <- suffix_reg(x)
-  dates[idx] <- suffix_reg_date(x[idx])
-
-  dates
 }
