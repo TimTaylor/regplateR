@@ -7,7 +7,7 @@ URL: https://tjtnew.github.io/regplateR/, https://github.com/tjtnew/regplateR
 BugReports: https://github.com/tjtnew/regplateR/issues
 Description: Functions to validate and, where possible, date GB vehicle
              registration plates.
-License: GPL (>=2)
+License: GPL (>= 2)
 Encoding: UTF-8
 Language: en-GB
 RoxygenNote: 7.1.2
