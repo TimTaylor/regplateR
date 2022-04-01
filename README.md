@@ -9,13 +9,6 @@ helped with the regular expressions and further information was obtained
 from this [wikipedia
 page](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom).
 
-## Installation
-
-``` r
-# Development version from GitHub
-devtools::install_github("tjtnew/regplateR")
-```
-
 ## available functions
 
 <table>
