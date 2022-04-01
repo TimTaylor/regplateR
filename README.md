@@ -9,7 +9,17 @@ helped with the regular expressions and further information was obtained
 from this [wikipedia
 page](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom).
 
-## available functions
+## Installation
+
+This package is not on CRAN but can be installed via:
+
+``` r
+install.packages("regplateR", repos = "https://timtaylor.r-universe.dev")
+#> Installing package into '/tmp/Rtmp3Bpvoz/temp_libpathd211229eb2d1'
+#> (as 'lib' is unspecified)
+```
+
+## Available functions
 
 <table>
 <thead>
