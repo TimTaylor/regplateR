@@ -16,12 +16,11 @@ knitr::opts_chunk$set(
 ```
 
 
-# regplateR
-`regplateR` is an `R` package to validate and date GB vehicles registration
-plates.  This [gist](https://gist.github.com/danielrbradley/7567269) by Daniel
-Bradley helped with the regular expressions and further information was
-obtained from this [wikipedia
-page](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom).
+# {regplateR}
+{regplateR} validates and dates GB vehicles registration plates.
+This [gist](https://gist.github.com/danielrbradley/7567269) by Daniel Bradley
+helped with the regular expressions and further information was obtained from
+[wikipedia](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom).
 
 ## Installation
 This package is not on CRAN but can be installed via:
@@ -32,39 +31,38 @@ install.packages("regplateR", repos = "https://timtaylor.r-universe.dev")
 
 ## Available functions
 
-| Function                         | returns                                               |
-|----------------------------------|-------------------------------------------------------|
-| `isCurrentReg(x)`                | index of plates in `x` in the current format          |
-| `isPrefixReg(x)`                 | index of plates in `x` in the prefix format           |
-| `isSuffixReg(x)`                 | index of plates in `x` in the suffix format           |
-| `isDatelessReg(x)`               | index of plates in `x` in the dateless format         |
-| `isValidReg(x)`                  | index of plates in `x` in the 1 of above formats      |
-| `regDate(x)`                     | earliest possible registration dates of plates in `x` |
+| Function          | returns                                               |
+|-------------------|-------------------------------------------------------|
+| `is_current(x)`   | index of plates in `x` in the current format          |
+| `is_prefix(x)`    | index of plates in `x` in the prefix format           |
+| `is_suffix(x)`    | index of plates in `x` in the suffix format           |
+| `is_dateless(x)`  | index of plates in `x` in the dateless format         |
+| `is_valid(x)`     | index of plates in `x` in the 1 of above formats      |
+| `reg_date(x)`     | earliest possible registration dates of plates in `x` |
 
 ## Example
 ``` {r}
 library(regplateR)
 
 # example plates
-plates <-   c("BD63 SMR", "BD15 SMR", "BD50 SMR",  # current
-              "test", "test",                      # invalid
-              "P888 PPE",                          # prefix
-              "FVL 144M",                          # suffix
-              "112 DFH", "MLP 6")                  # dateless
+plates <- c(
+  "BD63 SMR", "BD15 SMR", "BD50 SMR", # current
+  "test", "test", # invalid
+  "P888 PPE", # prefix
+  "FVL 144M", # suffix
+  "112 DFH", "MLP 6" # dateless
+)
 
 # valid registrations
-valid_idx <- isValidReg(plates)
-valid_plates <- plates[valid_idx]
-valid_plates
+(valid_plates <- plates[is_valid(plates)])
 
 # earliest registration of plates
-regDate(valid_plates)
-
+reg_date(valid_plates)
 ```
 
 ## Validation overview
 For the moment `regplateR` is quite broad in what is accepted as a valid plate,
-with four different formats currently accepted with no additional rules applied
+with four different formats currently accepted and no additional rules applied.
 
 ### [Current GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#Current_system)
 Current car registration plates (from 01 September 2001) must be of the form:

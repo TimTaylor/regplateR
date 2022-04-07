@@ -1,13 +1,12 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# regplateR
+# {regplateR}
 
-`regplateR` is an `R` package to validate and date GB vehicles
-registration plates. This
+{regplateR} validates and dates GB vehicles registration plates. This
 [gist](https://gist.github.com/danielrbradley/7567269) by Daniel Bradley
 helped with the regular expressions and further information was obtained
-from this [wikipedia
-page](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom).
+from
+[wikipedia](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom).
 
 ## Installation
 
@@ -28,27 +27,27 @@ install.packages("regplateR", repos = "https://timtaylor.r-universe.dev")
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>isCurrentReg(x)</code></td>
+<td><code>is_current(x)</code></td>
 <td>index of plates in <code>x</code> in the current format</td>
 </tr>
 <tr class="even">
-<td><code>isPrefixReg(x)</code></td>
+<td><code>is_prefix(x)</code></td>
 <td>index of plates in <code>x</code> in the prefix format</td>
 </tr>
 <tr class="odd">
-<td><code>isSuffixReg(x)</code></td>
+<td><code>is_suffix(x)</code></td>
 <td>index of plates in <code>x</code> in the suffix format</td>
 </tr>
 <tr class="even">
-<td><code>isDatelessReg(x)</code></td>
+<td><code>is_dateless(x)</code></td>
 <td>index of plates in <code>x</code> in the dateless format</td>
 </tr>
 <tr class="odd">
-<td><code>isValidReg(x)</code></td>
+<td><code>is_valid(x)</code></td>
 <td>index of plates in <code>x</code> in the 1 of above formats</td>
 </tr>
 <tr class="even">
-<td><code>regDate(x)</code></td>
+<td><code>reg_date(x)</code></td>
 <td>earliest possible registration dates of plates in <code>x</code></td>
 </tr>
 </tbody>
@@ -60,20 +59,20 @@ install.packages("regplateR", repos = "https://timtaylor.r-universe.dev")
 library(regplateR)
 
 # example plates
-plates <-   c("BD63 SMR", "BD15 SMR", "BD50 SMR",  # current
-              "test", "test",                      # invalid
-              "P888 PPE",                          # prefix
-              "FVL 144M",                          # suffix
-              "112 DFH", "MLP 6")                  # dateless
+plates <- c(
+  "BD63 SMR", "BD15 SMR", "BD50 SMR", # current
+  "test", "test", # invalid
+  "P888 PPE", # prefix
+  "FVL 144M", # suffix
+  "112 DFH", "MLP 6" # dateless
+)
 
 # valid registrations
-valid_idx <- isValidReg(plates)
-valid_plates <- plates[valid_idx]
-valid_plates
+(valid_plates <- plates[is_valid(plates)])
 #> [1] "BD63 SMR" "BD15 SMR" "BD50 SMR" "P888 PPE" "FVL 144M" "112 DFH"  "MLP 6"
 
 # earliest registration of plates
-regDate(valid_plates)
+reg_date(valid_plates)
 #> [1] "2013-09-01" "2015-03-01" "2050-03-01" "1996-08-01" "1973-08-01"
 #> [6] NA           NA
 ```
@@ -81,8 +80,8 @@ regDate(valid_plates)
 ## Validation overview
 
 For the moment `regplateR` is quite broad in what is accepted as a valid
-plate, with four different formats currently accepted with no additional
-rules applied
+plate, with four different formats currently accepted and no additional
+rules applied.
 
 ### [Current GB format](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom#Current_system)
 
