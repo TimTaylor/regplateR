@@ -15,8 +15,6 @@ This package is not on CRAN but can be installed via:
 
 ``` r
 install.packages("regplateR", repos = "https://timtaylor.r-universe.dev")
-#> Installing package into '/tmp/Rtmp3Bpvoz/temp_libpathd211229eb2d1'
-#> (as 'lib' is unspecified)
 ```
 
 ## Available functions
