@@ -1,11 +1,11 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# {regplateR}
+# regplateR
 
-{regplateR} validates and dates GB vehicles registration plates. This
-[gist](https://gist.github.com/danielrbradley/7567269) by Daniel Bradley
-helped with the regular expressions and further information was obtained
-from
+{regplateR} is a small package to validate and date GB vehicles
+registration plates. Daniel Bradley’s
+[gist](https://gist.github.com/danielrbradley/7567269) helped with the
+regular expressions and further information was obtained from
 [wikipedia](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_United_Kingdom).
 
 ## Installation

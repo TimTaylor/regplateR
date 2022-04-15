@@ -2,7 +2,7 @@
 % Please edit documentation in R/age.R
 \name{reg_date}
 \alias{reg_date}
-\title{Return registration date of number plate(s)}
+\title{Registration date of plates(s)}
 \usage{
 reg_date(x)
 }
@@ -13,5 +13,5 @@ reg_date(x)
 The corresponding registration plate dates
 }
 \description{
-Return registration date of number plate(s)
+Registration date of plates(s)
 }

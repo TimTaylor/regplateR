@@ -6,7 +6,7 @@
 \alias{is_prefix}
 \alias{is_suffix}
 \alias{is_dateless}
-\title{Match car registration plates}
+\title{Registration plate predicates}
 \usage{
 is_current(x)
 

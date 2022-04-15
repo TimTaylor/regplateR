@@ -1,4 +1,4 @@
-#' Match car registration plates
+#' Registration plate predicates
 #'
 #' These functions validate GB registration plates of varying formats.
 #'

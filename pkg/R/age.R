@@ -1,4 +1,4 @@
-#' Return registration date of number plate(s)
+#' Registration date of plates(s)
 #'
 #' @param x character vector of registrations
 #'
