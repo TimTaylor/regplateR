@@ -13,7 +13,10 @@ regular expressions and further information was obtained from
 This package is not on CRAN but can be installed via:
 
 ``` r
-install.packages("regplateR", repos = "https://timtaylor.r-universe.dev")
+if (!require(remotes)) {
+  install.packages("remotes")
+}
+remotes::install_github("TimTaylor/regplateR", subdir = "pkg")
 ```
 
 ## Available functions

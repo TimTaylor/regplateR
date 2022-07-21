@@ -25,10 +25,13 @@ helped with the regular expressions and further information was obtained from
 ## Installation
 This package is not on CRAN but can be installed via:
 
-```{r, eval=FALSE}
-install.packages("regplateR", repos = "https://timtaylor.r-universe.dev")
-```
 
+```{r, eval=FALSE}
+if (!require(remotes)) {
+  install.packages("remotes")
+}
+remotes::install_github("TimTaylor/regplateR", subdir = "pkg")
+```
 ## Available functions
 
 | Function          | returns                                               |
